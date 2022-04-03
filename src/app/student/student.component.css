@@ -1,0 +1,38 @@
+div{
+    text-align: center;
+}
+p{
+    color:cadetblue;
+    font-size: x-large;
+}
+div input{
+    width: 35%;
+    height: 40px;
+    margin-bottom: 10px;
+    border: 2px solid cadetblue;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-right: 5px;
+}
+div button{
+    width: 10%;
+    height: 35px;
+    background-color: cadetblue; 
+    border: 2px solid white;
+    border-radius: 4px;
+    color: white;
+    font-size: large;
+}
+table, td, th {  
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    padding: 15px;
+  }

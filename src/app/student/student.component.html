@@ -1,0 +1,90 @@
+
+<div [formGroup]="formStudents">
+   <div class="d-flex justify-content-center">
+    <input formControlName="FristName" #inputFirstName type="text" (keyup)="setFirstName(inputFirstName.value)" class="form-control" [class.is-invalid]="isInValidAndTouched('FristName')" [class.is-valid]="isValidControl('FristName')"  placeholder="FirstName">
+    <input formControlName="LastName" #inputLastName type="text" (keyup)="setLastName(inputLastName.value)" class="form-control" [class.is-invalid]="isInValidAndTouched('LastName')" [class.is-valid]="isValidControl('LastName')"  placeholder="LastName">
+   </div>
+    <div class="d-flex justify-content-around">
+        <div *ngIf="isInValidAndTouched('FristName')">
+            <small class="form-text text-danger me-5" *ngIf="isControlHasError('FristName','required')">firstName is required</small>
+            <small class="form-text text-danger me-5" *ngIf="isControlHasError('FristName','maxlength')">maxLength(15)</small>
+            <small class="form-text text-danger me-5" *ngIf="isControlHasError('FristName','minlength')">minLength(3)</small>
+
+        </div>
+        <div *ngIf="isInValidAndTouched('LastName')">
+            <small class="form-text text-danger me-5" *ngIf="isControlHasError('LastName','required')">LastName is required</small>
+            <small class="form-text text-danger me-5" *ngIf="isControlHasError('LastName','maxlength')">maxLength(15)</small>
+            <small class="form-text text-danger me-5" *ngIf="isControlHasError('LastName','minlength')">minLength(3)</small>
+        </div>
+    </div>
+
+    <br>
+    <div class="d-flex justify-content-center">
+        <input formControlName="Age" #inputAge type="number" (keyup)="setAge(inputAge.value)" class="form-control" [class.is-invalid]="isInValidAndTouched('Age')" [class.is-valid]="isValidControl('Age')" placeholder="Age">
+        <input formControlName="Mobile" #inputMobile type="text" (keyup)="setMobail(inputMobile.value)" class="form-control" [class.is-invalid]="isInValidAndTouched('Mobile')" [class.is-valid]="isValidControl('Mobile')"  placeholder="Mobile">
+    </div>
+    <div class="d-flex justify-content-around">
+        <div *ngIf="isInValidAndTouched('Age')">
+            <small class="form-text text-danger me-5" *ngIf="isControlHasError('Age','required')">Age is required</small>
+            <small class="form-text text-danger me-5" *ngIf="isControlHasError('Age','max')">maxLength(3)</small>
+            <small class="form-text text-danger me-5" *ngIf="isControlHasError('Age','min')">minLength(1)</small>
+
+        </div>
+        <div *ngIf="isInValidAndTouched('Mobile')">
+            <small class="form-text text-danger" *ngIf="isControlHasError('Mobile','required')">required Mobile</small>
+            <small class="form-text text-danger" *ngIf="isControlHasError('Mobile','pattern')"> 11 digit</small>
+       
+        </div>
+    </div>
+    <br>
+    <div class="d-flex justify-content-center">
+        <input formControlName="Email" #inputEmail type="text" (keyup)="setEmail(inputEmail.value)" class="form-control" [class.is-invalid]="isInValidAndTouched('Email')" [class.is-valid]="isValidControl('Email')" placeholder="Email">
+        <input formControlName="NationalID" #inputNationalID type="text" (keyup)="setNationalID(inputNationalID.value)" class="form-control" [class.is-invalid]="isInValidAndTouched('NationalID')" [class.is-valid]="isValidControl('NationalID')" placeholder="NationalID">
+    </div>
+    <div class="d-flex justify-content-center">
+        <div *ngIf="isInValidAndTouched('Email')">
+            <small class="form-text text-danger me-5" *ngIf="isControlHasError('Email','required')">Email is required</small>
+            <small class="form-text text-danger me-5" *ngIf="isControlHasError('Email','maxlength')">maxLength(30)</small>
+            <small class="form-text text-danger me-5" *ngIf="isControlHasError('Email','minlength')">minLength(10)</small>
+        </div>
+        <div *ngIf="isInValidAndTouched('NationalID')">
+            <small class="form-text text-danger me-5" *ngIf="isControlHasError('NationalID','required')">NationalID is required</small>
+            <small class="form-text text-danger me-5" *ngIf="isControlHasError('NationalID','maxlength')">maxLength(16)</small>
+            <small class="form-text text-danger me-5" *ngIf="isControlHasError('NationalID','minlength')">minLength(16)</small>
+        </div>
+        
+    </div>
+ 
+
+    <br>
+    <br>
+   
+   <!--   <button [disabled]="formStudents.invalid" type="button" (click)="addNewStudent()">Add</button> --> 
+    <button [disabled]="formStudents.invalid" type="button" (click)="addStudent(student.FirstName,student.LastName,student.Age,student.Mobile,student.Email,student.NationalID)">Add</button> 
+
+    <!--addStudent(student.firstName,student.lastName,student.age,student.mobile,student.email,student.nationalId)-->
+    <br>
+    <p>the number of Students = {{students.length}}</p>
+</div>
+<table>
+    <tr>
+        <td>#</td>
+        <td>ID</td>
+        <td>FullName</td>
+        <td>Age</td>
+        <td>Mobile</td>
+        <td>Email</td>
+    </tr>
+    <tr *ngFor="let item of students;let currentStudent=index">
+        <td>{{currentStudent+1}}</td>
+        <td>{{item.ID}}</td>
+        <!--<td [class.red-color]="item.age>=20" [class.green-color]="item.age<20">{{item.firstName+" "+item.lastName}}</td>-->
+        <td [class.red-color]="item.Age>=20" [class.green-color]="item.Age<20">{{item.Name}}</td>
+        <td><input type="number" [(ngModel)]="item.Age" ></td>
+        <td>{{item.Mobile}}</td>
+        <td>{{item.Email}}</td>
+        <td>
+            <button type="button" (click)="deletStudent(currentStudent)">Delete</button>
+        </td>
+    </tr>
+</table>
